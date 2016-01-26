@@ -5,6 +5,10 @@ function Movies(nameMovie, timeMovie, age) {
   this.displayMovie = [];
 }
 
+Movies.prototype.movieDisplay = function() {
+  return "Movie: " + this.nameMovie + ", Time: " + this.timeMovie + ", Age of Viewer: " + this.age;
+}
+
 Movies.prototype.fullPrice = function() {
 
   var price = 10
@@ -33,9 +37,14 @@ $("form#new-movie").submit(function(event) {
   var inputTime = $("select#time_movie").val();
   var inputAge = parseInt($("input#age").val());
   var newMovie = new Movies(inputMovie, inputTime, inputAge)
-  // newMovie.displayMovie.push(newMovie)
+  debugger;
+  newMovie.displayMovie.push(newMovie)
 
 $("ul#price").append("<li><span class='price'>" + newMovie.fullPrice() + "</span></li>");
+
+newMovie.displayMovie.forEach(function(movie) {
+  $("ul#price").append("<li>" + movie.movieDisplay() + "</li>");
+});
 
 });
 
